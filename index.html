@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-6">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="css/style.css" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <title>Movie Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div class="navbar w-full bg-black  h-16"> 
+        <div class="navbar-container flex align items-center  h-full">
+            <div class="logo-container flex-1 decoration-white">
+                <div class="logo text-3xl font-bold ">movify</div>
+            </div>
+            <div class="menu container flex-6 ">
+                <ul class="menu-list flex">
+                    <li class="menu-list-item mx-4">Home</li>
+                    <li class="menu-list-item mx-4">Movies</li>
+                    <li class="menu-list-item mx-4">Series</li>
+                    <li class="menu-list-item mx-4">Popular</li>
+                    <li class="menu-list-item mx-4">Trends</li>
+                </ul>
+            </div>
+
+           
+            <div class="profile-container flex-2  flex items-center justify-end">
+                <img class="w-16 h-16  rounded-3xl p-2" src="img/profile.jpg">
+                <div class="profile-container flex ">
+                    <span class="mx-2.5">Profile</span>
+                </div>
+                <div class="toggle  bg-white w-14 h-6 relative rounded-2xl flex items-center justify-around">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.716 9.716 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                      </svg>
+                      <div class="toggle-ball w-6 h-6  bg-black rounded-2xl absolute right-0"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar w-12 h-screen  bg-black fixed top-0 flex-col text-center">
+                <div class="">
+                    <i class="left-menu-icon fa fa-search text-white text-2xl mb-8 pt-16"></i>
+                </div>
+                <div>
+                    <i class="left-menu-icon fa fa-home text-white text-2xl mb-8 "></i>
+                </div>
+                <div>
+                    <i class="left-menu-icon fa fa-users text-white text-2xl mb-8"></i>
+                </div>
+                <div>
+                    <i class="left-menu-icon fa fa-bookmark text-white text-2xl mb-8"></i>
+                </div>
+                <div>
+                    <i class="left-menu-icon fa fa-tv text-white text-2xl mb-8"></i>
+                </div>
+                <div>
+                    <i class="left-menu-icon fa fa-hourglass text-white text-2xl mb-8"></i>
+                </div>
+                <div>
+                    <i class="left-menu-icon fa fa-shopping-cart text-white text-2xl mb-8"></i>
+                </div>
+    </div>
+    <div class="cont bg-black h-fit  text-white">
+        <div class="content-container md ml-12">
+            <div class="featured-content p-8" style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/a.jpg');">
+                <img class="featured-title w-48" src="img/b.png">
+                <p class="featured-desce w-6/12 text-gray-300 my-8">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                <button class="featured-button bold text-white bg-green-500 w-14 rounded-md outline-0">Watch</button>
+            </div>
+            <div class="movie-list-container p-10">
+                <div class="mx-6">
+                    <div class="tags">
+                        <div class="tag ">Action</div>
+                        <div class="tag px-6">Adventure</div>
+                        <div class="tag px-6">Drama</div>
+                        <div class="tag px-6">Comedy</div>
+                    </div>
+                 </div>
+                <h1 class="movie-list-title text-3xl mb-8">NEW RELEASES</h1>
+                <div class="movie-list-wrapper overflow-hidden relative">
+                    <div id="main" class="movie-list translate-x-0  flex items-center grid grid-cols-4 " data-aos="fade-up">
+                        <!-- <div id="aaa"></div> -->
+                        <!-- <div class="movie-list-item mx-2 relative">
+                            <img class="movie-list-item-img w-96 h-52 rounded-xl" src="img/1.jpeg" alt="">
+                            <span class="movie-list-item-title bg-slate-600 px-1 text-2xl  top-9 left-10 z-10 absolute">HHH</span>
+                            <p class="featured-desc w-6/12 text-gray-300 my-2  bg-slate-600 w-10/12 top-16 left-10 absolute">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                            <button class="movie-list-item-button bg-green-500 w-14 rounded-lg cursor-pointer absolute bottom-5 left-10">Watch</button>
+                        </div>
+                        <div class="movie-list-item mx-2 relative">
+                            <img class="movie-list-item-img w-96 h-52 rounded-xl" src="img/2.jpeg" alt="">
+                            <span class="movie-list-item-title bg-slate-600 px-1 text-2xl  top-9 left-10 z-10 absolute">HHH</span>
+                            <p class="featured-desc w-6/12 text-gray-300 my-2  bg-slate-600 w-10/12 top-16 left-10 absolute">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                            <button class="movie-list-item-button bg-green-500 w-14 rounded-lg cursor-pointer absolute bottom-5 left-10">Watch</button>
+                        </div>
+                        <div class="movie-list-item mx-2 relative">
+                            <img class="movie-list-item-img w-96 h-52 rounded-xl" src="img/3.jpg" alt="">
+                            <span class="movie-list-item-title bg-slate-600 px-1 text-2xl  top-9 left-10 z-10 absolute">HHH</span>
+                            <p class="featured-desc w-6/12 text-gray-300 my-2  bg-slate-600 w-10/12 top-16 left-10 absolute">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                            <button class="movie-list-item-button bg-green-500 w-14 rounded-lg cursor-pointer absolute bottom-5 left-10">Watch</button>
+                        </div>
+                        <div class="movie-list-item mx-2 relative">
+                            <img class="movie-list-item-img w-96 h-52 rounded-xl" src="img/4.jpg" alt="">
+                            <span class="movie-list-item-title bg-slate-600 px-1 text-2xl  top-9 left-10 z-10 absolute">HHH</span>
+                            <p class="featured-desc w-6/12 text-gray-300 my-2  bg-slate-600 w-10/12 top-16 left-10 absolute">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                            <button class="movie-list-item-button bg-green-500 w-14 rounded-lg cursor-pointer absolute bottom-5 left-10">Watch</button>
+                        </div>
+                        <div class="movie-list-item mx-2 relative">
+                            <img class="movie-list-item-img w-96 h-52 rounded-xl" src="img/5.jpg" alt="">
+                            <span class="movie-list-item-title bg-slate-600 px-1 text-2xl  top-9 left-10 z-10 absolute">HHH</span>
+                            <p class="featured-desc w-6/12 text-gray-300 my-2  bg-slate-600 w-10/12 top-16 left-10 absolute">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                            <button class="movie-list-item-button bg-green-500 w-14 rounded-lg cursor-pointer absolute bottom-5 left-10">Watch</button>
+                        </div> -->
+                        <i class="fa fa-angle-right arrow" style="font-size: 120px; position: absolute;top: 30px;right:0; color: gray; opacity: 0.5; cursor: pointer;"></i>
+                    </div>
+                    
+                </div>
+                <h2 class="new-section">Scroll Animations</h2>
+                <div class="scroll-animations">
+                <div class="animated item" data-aos="fade-right">
+                    <span>&#9742;</span>
+                    <h3>Number One</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis lacinia est. Nulla malesuada massa orci, vitae placerat lorem pharetra a.</p>
+                </div>
+                <div class="animated item" data-aos="fade-right">
+                    <span>&#9835;</span>
+                    <h3>Number Two</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis lacinia est. Nulla malesuada massa orci, vitae placerat lorem pharetra a.</p>
+                </div>
+                <div class="animated item" data-aos="fade-right">
+                    <span>&#9730;</span>
+                    <h3>Number Three</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis lacinia est. Nulla malesuada massa orci, vitae placerat lorem pharetra a.</p>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+   
+    <script src="js/custom.js"></script> 
+    <script src="js/api.js"></script>    
+</body>
+</html>

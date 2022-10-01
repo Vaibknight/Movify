@@ -1,0 +1,146 @@
+*{
+    margin:0;
+    padding : 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.logo{
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar-container{
+    padding : 0 90px;
+    color:white;
+}
+.flex-6{
+    flex: 6;
+}
+.flex-2{
+    flex: 2;
+}
+.logo{
+    font-family: "Sen", sans-serif;
+    color:#4dbf00;
+}
+.toggle{
+    color:goldenrod;
+}
+.toggle-ball{
+    transition: 1s ease all;
+}
+.white{
+    color:white;
+}
+.container-90{
+    width:90%;
+    margin: 0 auto;
+}
+.featured-content{
+    
+    height:51vh;
+}
+.movie-list-item{
+    transition: all 0.5s ease-in-out;
+}
+
+.movie-list-item:hover .featured-desc{
+    opacity: 1;
+    font-size: 0.75rem;
+}
+
+.movie-list-item:hover .rating{
+    opacity: 1;
+    font-size: 15px;
+}
+.movie-list-item:hover .movie-list-item-title{
+    opacity: 1;
+    font-size: 18px;
+}
+
+
+.featured-desc{
+    transition: 1s all ease-in-out;
+    opacity: 0;
+}
+.movie-list-item-title{
+    transition: 1s all ease-in-out;
+    opacity: 0;
+}
+.movie-list-item-button{
+    transition: 1s all ease-in-out;
+    opacity: 0;
+}
+.movie-list-item:hover {
+    transform: scale(1.2);
+    margin: 0 30px;
+
+}
+.movie-list-item-img{
+    object-fit: cover;
+    transition: all 1s ease-in-out;
+    border-radius: 20px;
+    
+}
+.movie-list-item-img:hover{
+    opacity: 0.5;
+}
+.movie-list{
+    transition: all 1s ease-in-out;
+}
+.toggle-ball.active{
+    transform: translate(-32px);
+    background-color: white;
+}
+.navbar.active{
+    background-color: white;
+}
+.menu.active{
+    color:black;
+}
+.sidebar.active{
+    background-color: white;
+}
+.cont.active{
+    background-color: white;
+    color: black;
+}
+.left-menu-icon.active{
+    color:black;
+}
+.toggle.active{
+    background-color: black;
+}
+
+
+/* css animation */
+
+.new-section {
+    padding-top: 50px;
+    text-align: center;
+    font-size: 4em;
+    font-weight: 100;
+  }
+
+  .scroll-animations {
+    display: flex;
+  }
+  
+.tags {
+    width:80%;
+    display:flex;
+    flex-wrap : wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.tag{
+    padding: 10px 20px;
+    background-color: orange;
+    border-radius: 50px;
+    margin: 5px;
+    cursor: pointer;
+}
+
