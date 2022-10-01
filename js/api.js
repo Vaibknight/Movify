@@ -1,13 +1,16 @@
 // TMDBB
 
-const API_KEY = 'api_key=1cf50e6248dc270629e802686245c2c8';
+const API_KEY = 'api_key=3a87516f4062d620354be39de766e08b';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/discover/movie?sort_by=popularity.desc&'+API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
+const searchURL = BASE_URL + '/search/movie?'+API_KEY;
 
 // Main accerssing innerhtml
 const main = document.getElementById('main');
+const form = document.getElementById('form');
+const search = document.querySelector(".search-box");
 
 const genres = [
     {
@@ -122,11 +125,51 @@ const genres = [
               selectGenre.push(genre.id);
             }
           }
-          console.log(selectGenre);
+          console.log(selectGenre," dsv");
+          // join helps to join array by , & it also converts arrays into strings
+
+          getMovies(API_URL + '&with_genres='+encodeURI(selectGenre.join(',')));
+          highlightSelection()
         })
         tags1.append(t);
     })
   }
+
+  function highlightSelection() {
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach(tag => {
+        tag.classList.remove('highlight')
+    })
+    clearBtn()
+    if(selectGenre.length !=0){   
+        selectGenre.forEach(id => {
+            const hightlightedTag = document.getElementById(id);
+            hightlightedTag.classList.add('highlight');
+        })
+    }
+
+}
+
+function clearBtn(){
+
+ let clearBtn = document.getElementById('clear');
+  if(clearBtn){
+    clearBtn.classList.add('highlight');
+  }else{
+    let clear = document.createElement('div');
+  clear.classList.add('tag','highlight')
+  clear.id = 'clear';
+  clear.innerText = 'Clear x';
+
+  clear.addEventListener('click',()=> {
+    selectGenre = [];
+    setGenre();
+    getMovies(API_URL);
+  })
+  tags1.append(clear);
+  }
+  
+}
 
 
 
@@ -135,24 +178,37 @@ getMovies(API_URL);
 
 function getMovies(url){
     fetch(url).then(res => res.json()).then(data => {
-        var moviearr = data.results;
-         console.log(moviearr);
-         showMovies(data.results);
+        // var moviearr = data.results;
+        // console.log(moviearr);
+        //  console.log(moviearr);
+        console.log(data.results);
+         
+
+         if(data.results.length != 0){
+          showMovies(data.results);
+         }else{
+              main.innerHTML= `<h1 class="no-results">No results Found</h1>`
+         }
+
+         console.log(url);
+         
+        //  console.log(showMovies(data.results));
     
     })
 }
 
 // Api functioning calling for html part
 function showMovies(data){
+ 
+  
         var ccc = 0;
         while(ccc<20){
-
         const {title,poster_path,overview,vote_average} = data[ccc];
         const moviel = document.createElement('div');
         moviel.classList.add('movie-list-item');
         moviel.innerHTML=`
         <div class="mx-4 my-4 relative" data-aos="fade-down">
-        <img class="movie-list-item-img w-96 h-52 rounded-xl " src="${IMG_URL+poster_path}" alt="">
+        <img class="movie-list-item-img w-96 h-52 rounded-xl " src="${poster_path? IMG_URL+poster_path: "http://via.placeholder.com/1080x1580"}" alt="">
         <div class="flex">
             <span class="movie-list-item-title bg-slate-600 px-1 text-xl  top-9 left-10 z-10 absolute">${title}</span>
             <span class="rating top-3 right-2.5 z-10 absolute  bg-green-500 w-14 rounded-lg cursor-pointer text-center justify-center ${getColor(vote_average)}">
@@ -167,7 +223,6 @@ function showMovies(data){
         main.appendChild(moviel);
             ccc++;
         }
-        console.log("end");
     
 
     // data.forEach(movie => {
@@ -202,6 +257,20 @@ function getColor(vote){
     }
 }
 
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const searchTerm = search.value;
+  selectGenre=[];
+  setGenre();
+  if(searchTerm) {
+      getMovies(searchURL+'&query='+searchTerm)
+  }else{
+      getMovies(API_URL);
+  }
+
+})
 
         
 
