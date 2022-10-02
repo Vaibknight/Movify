@@ -10,7 +10,7 @@ const searchURL = BASE_URL + '/search/movie?'+API_KEY;
 // Main accerssing innerhtml
 const main = document.getElementById('main');
 const form = document.getElementById('form');
-const search = document.querySelector(".search-box");
+const search = document.getElementById('search');
 
 const genres = [
     {
@@ -201,28 +201,35 @@ function getMovies(url){
 function showMovies(data){
  
   
-        var ccc = 0;
-        while(ccc<20){
-        const {title,poster_path,overview,vote_average} = data[ccc];
+        
+        data.forEach(movie => {
+        const {title,poster_path,overview,vote_average} = movie;
         const moviel = document.createElement('div');
         moviel.classList.add('movie-list-item');
         moviel.innerHTML=`
-        <div class="mx-4 my-4 relative" data-aos="fade-down">
+        <div class="mx-4 my-4 " data-aos="fade-down">
         <img class="movie-list-item-img w-96 h-52 rounded-xl " src="${poster_path? IMG_URL+poster_path: "http://via.placeholder.com/1080x1580"}" alt="">
         <div class="flex">
             <span class="movie-list-item-title bg-slate-600 px-1 text-xl  top-9 left-10 z-10 absolute">${title}</span>
             <span class="rating top-3 right-2.5 z-10 absolute  bg-green-500 w-14 rounded-lg cursor-pointer text-center justify-center ${getColor(vote_average)}">
             ${vote_average}
+            
             </span>
         </div>
-        <p class="featured-desc w-6/12 text-gray-300 my-4  bg-slate-600 w-9/12 top-16 left-10 absolute text-xs " >${overview.slice(0,70)}....</p>
+        
+        <div class="overview">
+        <p class="featured-desc w-6/12 text-gray-300 my-4  w-9/12   text-xs " >${overview.slice(0,70)}....</p>
+          <h1>KNOW MORE</h1>
+        </div>
+        
+
         
         </div>
         `;
 
         main.appendChild(moviel);
-            ccc++;
-        }
+            
+        })
     
 
     // data.forEach(movie => {
