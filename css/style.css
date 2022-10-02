@@ -180,19 +180,21 @@ body{
     left:0;
     right:0;
     bottom:0;
-    color: black;
+    color: transparent;
     background-color:white;
     padding: 1rem;
     max-height: 100%;
     transform:translateY(101%);
-    transition:transform 0.3s ease-in;
-    /* display: none; */
+    transition:transform 1.0s ease-in;
+    display: none;
     
 }
  
 .movie-list-item:hover .overview{
     transform:translateY(0);
-    /* display: block; */
-    transition:transform 0.3s ease-in;
+    display: block;
+    color: white;
+    background-color:white;
+    transition:transform 0.5s ease-in;
     
 }

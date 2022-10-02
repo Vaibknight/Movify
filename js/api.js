@@ -215,12 +215,13 @@ function showMovies(data){
             ${vote_average}
             
             </span>
-        </div>
-        
-        <div class="overview">
+            <div class="overview">
         <p class="featured-desc w-6/12 text-gray-300 my-4  w-9/12   text-xs " >${overview.slice(0,70)}....</p>
           <h1>KNOW MORE</h1>
         </div>
+        </div>
+        
+        
         
 
         
