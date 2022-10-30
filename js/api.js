@@ -93,6 +93,17 @@ const genres = [
 
   const tags1 = document.querySelector('.tags');
 
+  const prev = document.getElementById('prev');
+  const current = document.getElementById('current');
+  const next = document.getElementById('next');
+
+  
+  var currentPage = 1;
+  var nextPage = 2;  // FOR PAGINATION
+  var prevPage = 3;
+  var lasturl = '';
+  var totalPages = 100;
+
   var selectGenre = []
 
   setGenre();
@@ -177,6 +188,8 @@ function clearBtn(){
 getMovies(API_URL);
 
 function getMovies(url){
+
+  lasturl = url;
     fetch(url).then(res => res.json()).then(data => {
         // var moviearr = data.results;
         // console.log(moviearr);
@@ -184,8 +197,28 @@ function getMovies(url){
         console.log(data.results);
          
 
-         if(data.results.length != 0){
+         if(data.results.length !== 0){
           showMovies(data.results);
+          currentPage = data.page;
+           nextPage = currentPage + 1;  // FOR PAGINATION
+          prevPage = currentPage - 1;
+          totalPages = data.total_pages;
+
+          current.innerText = currentPage;
+
+          if(currentPage <= 1){
+            prev.classList.add('disabled');
+            next.classList.remove('disabled');
+          }else if(currentPage >= totalPages){
+            prev.classList.remove('disabled');
+            next.classList.add('disabled');
+          }else{
+            prev.classList.remove('disabled');
+            next.classList.remove('disabled');
+          }
+
+          tags1.scrollIntoView({behaviour : 'smooth'});
+
          }else{
               main.innerHTML= `<h1 class="no-results">No results Found</h1>`
          }
@@ -210,14 +243,14 @@ function showMovies(data){
         <div class="mx-4 my-4 " data-aos="fade-down">
         <img class="movie-list-item-img w-96 h-52 rounded-xl " src="${poster_path? IMG_URL+poster_path: "http://via.placeholder.com/1080x1580"}" alt="">
         <div class="flex">
-            <span class="movie-list-item-title bg-slate-600 px-1 text-xl  top-9 left-10 z-10 absolute">${title}</span>
+            <span class="movie-list-item-title bg-slate-600 px-1 text-xl  top-9 left-10 z-10 absolute">${title.slice(0,20)}</span>
             <span class="rating top-3 right-2.5 z-10 absolute  bg-green-500 w-14 rounded-lg cursor-pointer text-center justify-center ${getColor(vote_average)}">
             ${vote_average}
             
             </span>
             <div class="overview">
-        <p class="featured-desc w-6/12 text-gray-300 my-4  w-9/12   text-xs " >${overview.slice(0,70)}....</p>
-          <h1>KNOW MORE</h1>
+        <p class="featured-desc w-6/12 text-black my-4  w-9/12   text-xs " >${overview.slice(0,70)}....</p>
+          <h1 class=" bg-green-500  rounded-lg cursor-pointer text-center justify-center">KNOW MORE</h1>
         </div>
         </div>
         
@@ -280,5 +313,33 @@ form.addEventListener('submit', (e) => {
 
 })
 
-        
+prev.addEventListener('click',() =>{  //Prev Page Click
+  if(nextPage > 0){
+    pageCall(prevPage);
+  }
+})   
+
+next.addEventListener('click',() =>{  //Next Page Click
+  if(nextPage <= totalPages){
+    pageCall(nextPage);
+  }
+})      
+
+function pageCall(page){
+  let urlSplit = lasturl.split('?');
+  let queryParams = urlSplit[1].split('&');
+  let key = queryParams[queryParams.length-1].split('=');
+  if(key[0] != 'page'){
+    let url = lasturl + '&page='+page
+    getMovies(url);
+  }
+  else{
+    key[1] = page.toString();
+    let a = key.join('=');
+    queryParams[queryParams.length-1] = a;
+    let b = queryParams.join('&');
+    let url = urlSplit[0]+'?'+b
+    console.log(getMovies(url));
+  }
+}
 

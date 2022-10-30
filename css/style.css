@@ -198,3 +198,8 @@ body{
     transition:transform 0.5s ease-in;
     
 }
+
+.page.disabled{
+    cursor: not-allowed;
+    color: gray;
+}
