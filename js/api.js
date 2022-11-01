@@ -230,13 +230,14 @@ function getMovies(url){
     })
 }
 
+
 // Api functioning calling for html part
 function showMovies(data){
  
   
         
         data.forEach(movie => {
-        const {title,poster_path,overview,vote_average} = movie;
+        const {title,poster_path,overview,vote_average,id} = movie;
         const moviel = document.createElement('div');
         moviel.classList.add('movie-list-item');
         moviel.innerHTML=`
@@ -249,10 +250,10 @@ function showMovies(data){
             
             </span>
             <div class="overview">
-        <p class="featured-desc w-6/12 text-black my-4  w-9/12   text-xs " >${overview.slice(0,70)}....</p>
-          <h1 class=" bg-green-500  rounded-lg cursor-pointer text-center justify-center">KNOW MORE</h1>
-        </div>
-        </div>
+              <p class="featured-desc w-6/12 text-black my-4  w-9/12   text-xs " >${overview.slice(0,70)}....</p>
+                <button class=" bg-green-500  rounded-lg cursor-pointer text-center justify-center know-more" id="${id}">KNOW MORE</button>
+            </div>
+          </div>
         
         
         
@@ -263,7 +264,47 @@ function showMovies(data){
 
         main.appendChild(moviel);
             
+        document.getElementById(id).addEventListener('click', () => {
+          console.log(id);
+          openNav(movie); 
         })
+        })
+
+const overlayContent = document.getElementById('overlay-content');
+// FOR KNOW MORE DISPLAY
+function openNav(movie) {
+  let id= movie.id;
+  fetch(BASE_URL + '/movie/'+id+'/videos?'+API_KEY).then(res => res.json()).then(videoData => {
+    console.log(videoData);
+    if(videoData){
+      document.getElementById("myNav").style.width = "100%";
+      if(videoData.results.length > 0){
+          var embed = [];
+          videoData.results.forEach(video => {
+            let {name, key, site}  = video
+
+            if(site == 'Youtube'){
+              embed.push(`
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="${name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            `)
+            }
+            
+          })
+          overlayContent.innerHTML = embed.join('');
+
+      }
+      else{
+        overlayContent.innerHTML = `<h1 class="no-results">No results Found</h1>`
+      }
+    }
+  })
+ 
+}
+
+/* Close when someone clicks on the "x" symbol inside the overlay */
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}      
     
 
     // data.forEach(movie => {
