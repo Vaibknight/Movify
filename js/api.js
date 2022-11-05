@@ -280,18 +280,33 @@ function openNav(movie) {
       document.getElementById("myNav").style.width = "100%";
       if(videoData.results.length > 0){
           var embed = [];
-          videoData.results.forEach(video => {
+          var dots = [];
+          videoData.results.forEach((video,idx) => {
             let {name, key, site}  = video
-
-            if(site == 'Youtube'){
+            if(site == 'YouTube'){
               embed.push(`
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="${name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            `)
+
+            dots.push(`
+              <span class="dot">${idx + 1}</span>
             `)
             }
             
           })
-          overlayContent.innerHTML = embed.join('');
-
+          
+          var content = `
+          <h1 class="no-results text-white">${movie.original_title}</h1>
+        <br/>
+        
+        ${embed.join('')}
+        <br/>
+        <div class="dots">${dots.join('')}</div>
+        
+        `
+        overlayContent.innerHTML = content;
+        activeSlide=0;
+        showVideos();
       }
       else{
         overlayContent.innerHTML = `<h1 class="no-results">No results Found</h1>`
@@ -304,8 +319,57 @@ function openNav(movie) {
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
-}      
+}    
+
+// TO show one video at one page
+var activeSlide =0;
+var totalVideos = 0;
+function showVideos(){
+  let embedClasses = document.querySelectorAll('.embed');
+  let dots = document.querySelectorAll('.dot');
+  totalVideos = embedClasses.length;
+  embedClasses.forEach((embedTag,idx) => {
+    if(activeSlide == idx){
+      embedTag.classList.add('show')
+      embedTag.classList.remove('hide')
+    }
+    else{
+      embedTag.classList.add('hide');
+      embedTag.classList.remove('show')
+    }
+  })
+  dots.forEach((dot,indx)=> {
+    if(activeSlide == indx){
+      dot.classList.add('active');
+    }
+    else{
+      dot.classList.remove('active');
+    }
+  })
+}
     
+
+// For changinng pages in Youtube Videos
+const leftArrow = document.getElementById('left-arrow');
+const rightArrow = document.getElementById('right-arrow');
+
+leftArrow.addEventListener('click',() =>{
+  if(activeSlide > 0){
+    activeSlide --;
+  }else{
+    activeSlide = totalVideos -1;
+  }
+  showVideos()
+})
+
+rightArrow.addEventListener('click',() =>{
+  if(activeSlide < (totalVideos -1)){
+    activeSlide ++;
+  }else{
+    activeSlide = 0;
+  }
+  console.log(showVideos());
+})
 
     // data.forEach(movie => {
     //     const {title,poster_path,overview} = movie;
