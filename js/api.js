@@ -230,6 +230,9 @@ function getMovies(url){
     })
 }
 
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}   
 
 // Api functioning calling for html part
 function showMovies(data){
@@ -267,6 +270,7 @@ function showMovies(data){
         document.getElementById(id).addEventListener('click', () => {
           console.log(id);
           openNav(movie); 
+          closeNav(movie);
         })
         })
 
@@ -313,13 +317,11 @@ function openNav(movie) {
       }
     }
   })
- 
+
 }
 
 /* Close when someone clicks on the "x" symbol inside the overlay */
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
-}    
+ 
 
 // TO show one video at one page
 var activeSlide =0;
