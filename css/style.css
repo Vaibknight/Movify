@@ -302,14 +302,15 @@ body{
 }
 
 .dots .dot{
-    padding: 5px 15px;
+    padding: 9px 20px;
     border-radius : 50%;
-    border : 5px solid purple;;
+    border : 5px solid #7FFFD4;
     color: white;
     font-size: 20px;
     font-weight: 600;
     margin: 5px;
+    display: inline-block;
 }
-.dots.dot.active{
+.dots .dot.active{
     border-color: orange;
 }

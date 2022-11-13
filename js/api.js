@@ -136,7 +136,7 @@ const genres = [
               selectGenre.push(genre.id);
             }
           }
-          console.log(selectGenre," dsv");
+          console.log(selectGenre);
           // join helps to join array by , & it also converts arrays into strings
 
           getMovies(API_URL + '&with_genres='+encodeURI(selectGenre.join(',')));
@@ -194,7 +194,7 @@ function getMovies(url){
         // var moviearr = data.results;
         // console.log(moviearr);
         //  console.log(moviearr);
-        console.log(data.results);
+        data.results;
          
 
          if(data.results.length !== 0){
@@ -223,7 +223,7 @@ function getMovies(url){
               main.innerHTML= `<h1 class="no-results">No results Found</h1>`
          }
 
-         console.log(url);
+        
          
         //  console.log(showMovies(data.results));
     
@@ -237,7 +237,7 @@ function closeNav() {
 // Api functioning calling for html part
 function showMovies(data){
  
-  
+  main.innerHTML = ``;
         
         data.forEach(movie => {
         const {title,poster_path,overview,vote_average,id} = movie;
@@ -438,6 +438,7 @@ function pageCall(page){
   let key = queryParams[queryParams.length-1].split('=');
   if(key[0] != 'page'){
     let url = lasturl + '&page='+page
+    console.log(url);
     getMovies(url);
   }
   else{
@@ -446,7 +447,7 @@ function pageCall(page){
     queryParams[queryParams.length-1] = a;
     let b = queryParams.join('&');
     let url = urlSplit[0]+'?'+b
-    console.log(getMovies(url));
+    getMovies(url);
   }
 }
 
